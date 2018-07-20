@@ -1,22 +1,22 @@
 <!doctype html>
-<meta charset="UTF-8"> 
+<meta charset="UTF-8">
 <html>
 
-<!-- 
-If running using Google Chrome, open the browser via the command line 
-with the additional flag: –allow-file-access-from-files 
+<!--
+If running using Google Chrome, open the browser via the command line
+with the additional flag: –allow-file-access-from-files
 -->
 
   <head>
-		<title>CG Assignment 2</title>
-	
+		<title>Rendering</title>
+
 		<script type="text/javascript" src="common/jquery-3.2.1.min.js"></script>
 		<script type="text/javascript" src="common/maths_utils.js"></script>
-		
+
 		<script type="text/javascript" src="common/simple_drawing.js"></script>
 		<script type="text/javascript" src="common/texturing.js"></script>
 		<script type="text/javascript" src="common/transformations.js"></script>
-		
+
 		<!-- Files you need to edit -->
 		<script type="text/javascript" src="01_load_obj.js"></script>
 		<script type="text/javascript" src="02_subdiv.js"></script>
@@ -28,19 +28,19 @@ with the additional flag: –allow-file-access-from-files
 				var pos = [0,0,0];
 				var size = [1, 1, 1];
 				var model = new Model(pos, size);
-				
+
 
 				model.getTransform = function(){
 					var RX = rotateX(parseFloat($('#rot-x').val()));
 					var RY = rotateY(parseFloat($('#rot-y').val()));
 					var RZ = rotateZ(parseFloat($('#rot-z').val()));
 					var R = multiplyMat4(RX, multiplyMat4(RY, RZ));
-					
+
 					var T = translate(parseFloat($('#move-x').val()), parseFloat($('#move-y').val()), parseFloat($('#move-z').val()));
-										
+
 					return multiplyMat4(T, R);
 				}
-				
+
 				return [model];
 			}
 		</script>
@@ -48,7 +48,7 @@ with the additional flag: –allow-file-access-from-files
 	<body>
 		<canvas id="rendering-surface" height="500" width="500"></canvas>
 		<form>
-			
+
 			<table>
 				<tr><b><u>Subdivision</u></b></tr>
 				<tr>
@@ -57,7 +57,7 @@ with the additional flag: –allow-file-access-from-files
 				</tr>
 				<tr>
 					<td>Subdivision</td>
-					
+
 					<td><input type="range" id="subdiv" min="0" max="2" step="1" value="0" oninput="subdiv_output.value = subdiv.value"></td>
 					<td><output name="subdiv_output" id="subdiv-output">0</output></td>
 				</tr>
