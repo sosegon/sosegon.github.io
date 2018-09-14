@@ -144,48 +144,78 @@ var Player = function () {
 var Agent = function (_Player) {
 	_inherits(Agent, _Player);
 
-	function Agent(direction) {
+	function Agent() {
 		_classCallCheck(this, Agent);
 
-		return _possibleConstructorReturn(this, (Agent.__proto__ || Object.getPrototypeOf(Agent)).call(this, direction));
+		return _possibleConstructorReturn(this, (Agent.__proto__ || Object.getPrototypeOf(Agent)).call(this));
 	}
 
 	_createClass(Agent, [{
 		key: "maxCell",
-		value: function maxCell(token, board) {
+		value: function maxCell(token, boardMatrix) {
 			// direction: true vertical, false horizontal
 			// Simply select the cell with the highest value
-			var tokenRowIndex = token.rowIndex;
-			var tokenColIndex = token.colIndex;
-			if (this.direction) {
-				var indexMaxValue = -1;
-				var maxValue = -1;
-				for (var i = 0; i < Board.size; i++) {
-					var cell = board.cells[i][tokenColIndex];
-					if (cell.value > maxValue) {
-						maxValue = cell.value;
-						indexMaxValue = i;
-					}
-				}
-				if (maxValue > 0) {
-					return [indexMaxValue, tokenColIndex];
-				}
-			} else {
-				var _indexMaxValue = -1;
-				var _maxValue = -1;
-				for (var _i = 0; _i < Board.size; _i++) {
-					var _cell = board.cells[tokenRowIndex][_i];
-					if (_cell.value > _maxValue) {
-						_maxValue = _cell.value;
-						_indexMaxValue = _i;
-					}
-				}
-				if (_maxValue > 0) {
-					return [tokenRowIndex, _indexMaxValue];
+			var nBoardMatrix = boardMatrix;
+			var nTokenColIndex = token.colIndex;
+
+			if (!this.direction) {
+				nBoardMatrix = rotateClockwise(boardMatrix);
+				var indices = rotateIndicesClockwise(token.rowIndex, token.colIndex, nBoardMatrix.length);
+				nTokenColIndex = indices[1];
+			}
+
+			var indexMaxValue = -1;
+			var maxValue = -1;
+			for (var i = 0; i < nBoardMatrix.length; i++) {
+				var cell = nBoardMatrix[i][nTokenColIndex];
+				if (cell > maxValue) {
+					maxValue = cell;
+					indexMaxValue = i;
 				}
 			}
 
+			if (maxValue > 0) {
+				if (!this.direction) {
+					return rotateIndicesCounterClockwise(indexMaxValue, nTokenColIndex, nBoardMatrix.length);
+				}
+				return [indexMaxValue, nTokenColIndex];
+			}
+
 			return [-1, -1];
+		}
+	}, {
+		key: "maxGain",
+		value: function maxGain(token, boardMatrix) {
+			// direction: true vertical, false horizontal
+			// Get the cell with highest gain with respect to next turn
+			var nBoardMatrix = boardMatrix;
+			var nTokenColIndex = token.colIndex;
+			var nTokenRowIndex = token.rowIndex;
+
+			if (!this.direction) {
+				nBoardMatrix = rotateClockwise(nBoardMatrix);
+				var indices = rotateIndicesClockwise(token.rowIndex, token.colIndex, nBoardMatrix.length);
+				nTokenRowIndex = indices[0];
+				nTokenColIndex = indices[1];
+			}
+
+			var gainsMatrix = getGainsMatrix(nTokenColIndex, nBoardMatrix);
+			var indexBestGain = getBestGain(nTokenRowIndex, nTokenColIndex, gainsMatrix, nBoardMatrix);
+
+			var position = [-1, -1];
+			if (indexBestGain >= 0) {
+				if (!this.direction) {
+					position = rotateIndicesCounterClockwise(indexBestGain, nTokenColIndex, nBoardMatrix.length);
+				} else {
+					position = [indexBestGain, nTokenColIndex];
+				}
+			}
+
+			// if(boardMatrix[position[0]][position[1]] <= 0) {
+			// 	debugger;
+			// }
+
+			return position;
 		}
 	}]);
 
@@ -296,9 +326,9 @@ var Board = function () {
 					if (cell.value > 0) return true;
 				}
 			} else {
-				for (var _i2 = 0; _i2 < Board.size; _i2++) {
-					var _cell2 = this.cells[tokenRowIndex][_i2];
-					if (_cell2.value > 0) return true;
+				for (var _i = 0; _i < Board.size; _i++) {
+					var _cell = this.cells[tokenRowIndex][_i];
+					if (_cell.value > 0) return true;
 				}
 			}
 			return false;
@@ -337,14 +367,122 @@ var Board = function () {
 
 			return values;
 		}
+	}, {
+		key: "asMatrix",
+		value: function asMatrix() {
+			var size = this.cells.length;
+			var matrix = [];
+			for (var i = 0; i < size; i++) {
+				var row = [];
+				for (var j = 0; j < size; j++) {
+					row.push(this.cells[i][j].value);
+				}
+				matrix.push(row);
+			}
+			return matrix;
+		}
 	}]);
 
 	return Board;
 }();
 
-Board.size = 6;
+Board.size = 8;
 
 function randomInteger(min, max) {
 	var r = Math.random();
 	return min + Math.round(r * (max - min));
+}
+
+function rotateClockwise(matrix) {
+	var size = matrix.length;
+	var newMatrix = [];
+	for (var i = 0; i < size; i++) {
+		var row = [];
+		for (var j = 0; j < size; j++) {
+			row.push(matrix[size - j - 1][i]);
+		}
+		newMatrix.push(row);
+	}
+
+	return newMatrix;
+}
+
+function rotateCounterClockwise(matrix) {
+	var size = matrix.length;
+	var newMatrix = [];
+	for (var i = 0; i < size; i++) {
+		var row = [];
+		for (var j = 0; j < size; j++) {
+			row.push(matrix[j][size - i - 1]);
+		}
+		newMatrix.push(row);
+	}
+
+	return newMatrix;
+}
+
+function rotateIndicesClockwise(rowIndex, colIndex, size) {
+	return [colIndex, size - rowIndex - 1];
+}
+
+function rotateIndicesCounterClockwise(rowIndex, colIndex, size) {
+	return [size - colIndex - 1, rowIndex];
+}
+
+function getGainsMatrix(tokenColIndex, gameMatrix) {
+	// Assume the direction is vertical, so the agent
+	// selects over a column
+	var size = gameMatrix.length;
+	var gainsMatrix = [];
+	var nGameMatrix = gameMatrix;
+	var nTokenColIndex = tokenColIndex;
+
+	for (var i = 0; i < size; i++) {
+		var row = [];
+		for (var j = 0; j < size; j++) {
+			if (nGameMatrix[i][nTokenColIndex] <= 0) {
+				row.push(0);
+			} else {
+				row.push(nGameMatrix[i][nTokenColIndex] - nGameMatrix[i][j]);
+			}
+		}
+		gainsMatrix.push(row);
+	}
+
+	return gainsMatrix;
+}
+
+function getBestGain(tokenRowIndex, tokenColIndex, gainsMatrix, boardMatrix) {
+	// assume the direction is vertical
+	var size = gainsMatrix.length;
+	var minGains = [];
+
+	// get the min gains in every row
+	for (var i = 0; i < size; i++) {
+		var minGain = null;
+		for (var j = 0; j < size; j++) {
+			if (j === tokenColIndex) {
+				// avoid the column of the token
+				continue;
+			}
+			if (minGain === null || minGain > gainsMatrix[i][j]) {
+				minGain = gainsMatrix[i][j];
+			}
+		}
+		minGains.push(minGain);
+	}
+
+	// obtain the index of the max gain
+	var rowIndex = -1;
+	var maxGain = null;
+	for (var _i2 = 0; _i2 < size; _i2++) {
+		// The token has to move to other position: tokenRowIndex !== i
+		// Also, a cell has to be in the position: boardMatrix[i][tokenColIndex] > 0
+		if ((maxGain === null || maxGain < minGains[_i2]) && tokenRowIndex !== _i2 && boardMatrix[_i2][tokenColIndex] > 0) {
+			maxGain = minGains[_i2];
+			rowIndex = _i2;
+		}
+	}
+
+	return rowIndex;
 }

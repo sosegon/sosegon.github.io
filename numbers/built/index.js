@@ -225,11 +225,13 @@ var CellView = function (_React$Component2) {
 			}).then(function () {
 				var agent = game.getCurrentPlayer();
 				return new Promise(function (resolve, reject) {
-					var position = agent.maxCell(game.token, game.board);
+					var position = agent.maxGain(game.token, game.board.asMatrix());
 					if (position[0] >= 0 && position[1] >= 0) {
 						setTimeout(function () {
 							return resolve(position);
 						}, delay);
+					} else {
+						console.loge("Error in agent");
 					}
 				});
 			}).then(function (position) {
@@ -374,7 +376,7 @@ var rescale = function rescale(screenHeight, screenWidth) {
 	// var screenWidth = window.innerWidth;
 	// var screenHeight = window.innerHeight * window.devicePixelRatio;
 	// var screenWidth = window.innerWidth * window.devicePixelRatio;
-	// var screenRatio = screenWidth / screenHeight;
+	var screenRatio = screenWidth / screenHeight;
 
 	// Scrolling on the following devices
 	// PIXEL 2XL landscape
