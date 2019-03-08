@@ -53,7 +53,7 @@ $(document).ready(function() {
         '<li><a href="https://www.upwork.com/fl/sebastianvelasquez" target="_blank"><img src="assets/images/iconos-18.png" title="upwork"></a></li>' +
         '<li><a href="https://www.linkedin.com/in/sosegon/" target="_blank"><img src="assets/images/iconos-20.png" title="linkedin"></a></li>' +
         '<li><a href="https://medium.com/@sosegon" target="_blank"><img src="assets/images/iconos-21.png"></a></li>' +
-    '</ul>'
+    '</ul>';
     let social_gray =
     '<ul>' +
         '<li><a href="https://api.whatsapp.com/send?phone=593987021212" target="_blank"><img src="assets/images/iconos-13.png" title="WhatsApp"></a></li>' +
@@ -61,7 +61,13 @@ $(document).ready(function() {
         '<li><a href="https://www.upwork.com/fl/sebastianvelasquez" target="_blank"><img src="assets/images/iconos-17.png" title="upwork"></a></li>' +
         '<li><a href="https://www.linkedin.com/in/sosegon/" target="_blank"><img src="assets/images/iconos-19.png" title="linkedin"></a></li>' +
         '<li><a href="https://medium.com/@sosegon" target="_blank"><img src="assets/images/iconos-22.png"></a></li>' +
-    '</ul>'
+    '</ul>';
     $(".side-social.social-white").append(social_white);
     $(".side-social.social-gray").append(social_gray);
+
+    let logo =
+    '<div class="logo">' +
+      'SV' +
+    '</div>';
+    $(".header-cont").prepend(logo);
 });
