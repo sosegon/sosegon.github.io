@@ -506,7 +506,7 @@ section {
 
 .jobs {
     position: relative;
-    min-height: 520px;
+    min-height: 670px;
 }
 
 .job-info {
@@ -536,6 +536,11 @@ section {
 .job-info:nth-child(5) {
     top: 400px;
     right: 56.3%;
+}
+
+.job-info:nth-child(6) {
+    top: 560px;
+    right: 33.5%;
 }
 
 .side-blobks.green {
@@ -922,7 +927,8 @@ textarea:focus,
     }
 
     .job-info:nth-child(4),
-    .job-info:nth-child(5) {
+    .job-info:nth-child(5),
+    .job-info:nth-child(6) {
         right: 0px;
         top: auto;
         width: 84%;
