@@ -150,6 +150,11 @@ section {
     margin-bottom: 35px
 }
 
+.side-social a:hover>img{
+    transform: scale(1.5);
+    transition: 0.7s;
+}
+
 .side-social img {
     width: 26px;
 }
