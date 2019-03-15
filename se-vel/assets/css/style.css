@@ -150,7 +150,7 @@ section {
     margin-bottom: 35px
 }
 
-.side-social a:hover>img{
+.side-social a:hover>img {
     transform: scale(1.5);
     transition: 0.7s;
 }
@@ -312,9 +312,16 @@ section {
 
 .about-img>div {
     background: url('../images/about.jpg') center no-repeat;
-    background-size: 100% 100%;
+    background-size: cover;
     min-height: 90%;
     height: auto;
+}
+
+.aboutme-img {
+    overflow: hidden;
+    min-height: 90%;
+    height: auto;
+    transform: scale(.75);
 }
 
 .ripple-effect {
@@ -706,6 +713,10 @@ textarea:focus,
         max-width: 1180px;
     }
 
+    .about-img>div {
+        background-position: -40px;
+    }
+
 }
 
 
@@ -737,6 +748,11 @@ textarea:focus,
     .lg-line {
         height: 194px !important;
     }
+
+    .about-img>div {
+        background-position: -70px;
+    }
+
 }
 
 @media (max-width: 991px) {
@@ -799,6 +815,7 @@ textarea:focus,
         margin-bottom: 20px;
         background-size: 100%;
         height: 360px;
+        background-position: 0px 0px;
     }
 
     .inner-cont {
@@ -839,8 +856,8 @@ textarea:focus,
     }
 
     /*.header{
-		margin-bottom: 20px;
-	}*/
+        margin-bottom: 20px;
+    }*/
     .sblog-title>div {
         text-align: center;
     }
@@ -871,6 +888,9 @@ textarea:focus,
 }
 
 @media (max-width: 767px) {
+    .about-img>div {
+        background-size: 110%
+    }
 
     .sblog-title {
         bottom: auto;
@@ -1036,6 +1056,9 @@ textarea:focus,
 }
 
 @media (max-width: 575px) {
+    .about-img>div {
+        background-size: 120%;
+    }
 
     .navbar-toggler,
     .navbar-toggler.collapsed {
@@ -1148,6 +1171,9 @@ textarea:focus,
 }
 
 @media (max-width: 550px) {
+    .about-img>div {
+        background-size: 130%
+    }
     .personal-pranding .main-title {
         font-size: 4rem;
     }
@@ -1167,6 +1193,9 @@ textarea:focus,
 }
 
 @media (max-width: 450px) {
+    .about-img>div {
+        background-size: 160%;
+    }
     .personal-pranding .main-title {
         font-size: 3rem;
     }
@@ -1188,5 +1217,8 @@ textarea:focus,
 @media (max-width: 360px) {
     .personal-pranding .main-title {
         font-size: 2.5rem;
+    }
+    .about-img>div {
+        background-size: 172%;
     }
 }
