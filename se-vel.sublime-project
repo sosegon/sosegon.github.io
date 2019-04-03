@@ -1,0 +1,26 @@
+{
+  "folders":
+  [
+    {
+      "path": ".",
+      "folder_exclude_patterns": [
+        "2048tricks",
+        "numbers-demo",
+        "rendering",
+        "watch-finder",
+        "node_modules"],
+      "follow_symlinks": true
+    }
+  ],
+  "settings":
+  {
+    "tab_size": 2
+  },
+  "build_systems":
+  [
+    {
+      "name": "List",
+      "shell_cmd": "ls -l"
+    }
+  ]
+}
