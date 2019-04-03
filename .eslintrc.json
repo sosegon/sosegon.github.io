@@ -1,7 +1,8 @@
 {
     "env": {
         "browser": true,
-        "es6": true
+        "es6": true,
+        "commonjs": true
     },
     "globals": {
         "Atomics": "readonly",
@@ -21,7 +22,8 @@
     },
     "extends": [
         "eslint:recommended",
-        "plugin:react/recommended"
+        "plugin:react/recommended",
+        "react-app"
     ],
     "settings": {
         "react": {
