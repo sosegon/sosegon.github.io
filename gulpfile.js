@@ -4,6 +4,7 @@ const autoprefixer = require('gulp-autoprefixer');
 const browserSync = require('browser-sync').create();
 const eslint = require('gulp-eslint');
 const babel = require('gulp-babel');
+const validator = require('gulp-html');
 
 const stylesPath = 'src/style/**/*.scss';
 const scriptsPath = 'src/js/**/*.js';
@@ -36,6 +37,12 @@ gulp.task('scripts', () => {
       }))
       .pipe(gulp.dest('./built/js'))
   );
+});
+
+gulp.task('html', () => {
+  return gulp.src('src/index.html')
+  .pipe(validator())
+  .pipe(gulp.dest('built/'));
 });
 
 gulp.task('default', () => {
