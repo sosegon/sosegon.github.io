@@ -1,6 +1,7 @@
 const gulp = require('gulp');
 const sass = require('gulp-sass');
 const autoprefixer = require('gulp-autoprefixer');
+const browserSync = require('browser-sync').create();
 
 const styles = 'src/style/**/*.scss';
 
@@ -10,9 +11,13 @@ gulp.task('styles', () => {
 		.pipe(autoprefixer({
 			browsers: ['last 2 versions']
 		}))
-		.pipe(gulp.dest('./built/style'));
+		.pipe(gulp.dest('./built/style'))
+		.pipe(browserSync.stream());
 });
 
-gulp.task('watch', () => {
-	gulp.watch(styles, ['styles']);
+gulp.task('default', () => {
+	gulp.watch(styles, gulp.series('styles'));
+	browserSync.init({
+		server: './built'
+	});
 });
