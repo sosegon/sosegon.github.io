@@ -1,28 +1,42 @@
 const gulp = require('gulp');
 const sass = require('gulp-sass');
 const autoprefixer = require('gulp-autoprefixer');
-const browserSync = require('browser-sync').create();
+const browser_sync = require('browser-sync').create();
 const eslint = require('gulp-eslint');
 const babel = require('gulp-babel');
 const validator = require('gulp-html');
+const concat = require('gulp-concat');
 
-const stylesPath = 'src/style/**/*.scss';
-const scriptsPath = 'src/js/**/*.js';
+const paths = {
+  styles: 'src/style/**/*.scss',
+  scripts: 'src/js/**/*.jsx',
+  pages: 'src/**/*.html'
+};
 
-gulp.task('styles', () => {
-  return gulp.src(stylesPath)
+const browserSync = (done) => {
+  browser_sync.init({
+    server: {
+      baseDir: './built/'
+    },
+    port: 3000
+  });
+  done();
+};
+
+const styles = () => {
+  return gulp.src(paths.styles)
     .pipe(sass())
     .pipe(autoprefixer({
       browsers: ['last 2 versions']
     }))
     .pipe(gulp.dest('./built/style'))
-    .pipe(browserSync.stream());
-});
+    .pipe(browser_sync.stream());
+};
 
-gulp.task('scripts', () => {
+const scripts = () => {
   return (
     gulp
-      .src([scriptsPath])
+      .src([paths.scripts])
       // eslint() attaches the lint output to the eslint property
       // of the file object so it can be used by other modules.
       .pipe(eslint())
@@ -35,21 +49,27 @@ gulp.task('scripts', () => {
       .pipe(babel({
         presets: ["@babel/preset-env", "@babel/preset-react"]
       }))
+      .pipe(concat('index.js'))
       .pipe(gulp.dest('./built/js'))
+      .pipe(browser_sync.stream())
   );
-});
+};
 
-gulp.task('html', () => {
-  return gulp.src('src/index.html')
+const pages = () => {
+  return gulp.src(paths.pages)
   .pipe(validator())
-  .pipe(gulp.dest('built/'));
-});
+  .pipe(gulp.dest('built/'))
+  .pipe(browser_sync.stream());
+};
 
-gulp.task('default', () => {
-  gulp.watch(stylesPath, gulp.series('styles'));
-  gulp.watch(scriptsPath, gulp.series('scripts'));
+const watchFiles = () => {
+  gulp.watch(paths.styles, styles);
+  gulp.watch(paths.scripts, scripts);
+  gulp.watch(paths.pages, pages);
+};
 
-  browserSync.init({
-    server: './built'
-  });
-});
+const build = gulp.parallel(styles, scripts, pages);
+const watch = gulp.parallel(watchFiles, browserSync);
+
+exports.build = build;
+exports.watch = watch;
