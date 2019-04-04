@@ -22,8 +22,7 @@
     },
     "extends": [
         "eslint:recommended",
-        "plugin:react/recommended",
-        "react-app"
+        "plugin:react/recommended"
     ],
     "settings": {
         "react": {
