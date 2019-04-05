@@ -13,7 +13,8 @@ const concat = require('gulp-concat');
 const paths = {
   styles: 'src/style/**/*.scss',
   scripts: 'src/js/**/*.jsx',
-  pages: 'src/*.html'
+  pages: 'src/*.html',
+  fonts: 'src/fonts/*'
 };
 
 const browserSync = (done) => {
@@ -68,18 +69,26 @@ const scripts = () => {
 const pages = () => {
   return gulp.src(paths.pages)
   .pipe(validator())
-  .pipe(gulp.dest('built/'))
+  .pipe(gulp.dest('./built'))
   .pipe(browser_sync.stream());
+};
+
+const fonts = () => {
+  return gulp
+    .src(paths.fonts)
+    .pipe(gulp.dest('./built/fonts'))
+    .pipe(browser_sync.stream());
 };
 
 const watchFiles = () => {
   gulp.watch(paths.styles, styles);
   gulp.watch(paths.scripts, gulp.series(scriptsLint, scripts));
   gulp.watch(paths.pages, pages);
+  gulp.watch(paths.fonts, fonts);
 };
 
 const js = gulp.series(scriptsLint, scripts);
-const build = gulp.parallel(styles, js, pages);
+const build = gulp.parallel(styles, js, pages, fonts);
 const watch = gulp.parallel(watchFiles, browserSync);
 
 exports.js = js;
