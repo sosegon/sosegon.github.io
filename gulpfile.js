@@ -7,6 +7,7 @@ const validator = require('gulp-html');
 const browserify = require('browserify');
 const babelify = require('babelify');
 const source = require('vinyl-source-stream');
+const glob = require('glob');
 
 const paths = {
   styles: 'src/style/**/*.scss',
@@ -45,7 +46,7 @@ const scriptsLint = () => {
 const scripts = () => {
   const toJs = browserify({
     extensions: [".jsx"],
-    entries: ['./src/js/App.jsx', './src/js/index.jsx'],
+    entries: glob.sync(paths.scripts),
     debug: true
   })
   .transform(babelify, {
