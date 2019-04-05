@@ -1,34 +1,17 @@
-import React, { Component } from 'react';
-export default class App extends Component {
-  render() {
-    return (
-      <div className="header">
-        <div className="header-cont">
-          <nav className="navbar navbar-expand-sm">
-            <span className="navbar-toggler" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-              <img src="assets/images/bars.png" className="d-block"/>
-              <img src="assets/images/close.png" className="d-none"/>
-            </span>
-            <div className="collapse navbar-collapse" id="navbarNavDropdown">
-              <ul className="navbar-nav">
-                <li className="nav-item active animated fadeIn">
-                  <a className="nav-link" href="#Home">Home</a>
-                </li>
-                <li className="nav-item animated fadeIn">
-                  <a className="nav-link" href="#About">About Me</a>
-                </li>
-                <li className="nav-item animated fadeIn">
-                  <a className="nav-link" href="#Blog">Blog</a>
-                </li>
-                <li className="nav-item animated fadeIn">
-                  <a className="nav-link" href="#Resume">Resume</a>
-                </li>
-              </ul>
-            </div>
-            <div className="nav-border  bounceInRight wow animated"></div>
-          </nav>
-        </div>
-      </div>
-    );
-  }
-}
+import React from 'react';
+import Header from './Header';
+import Home from './Home';
+import About from './About';
+import Blog from './Blog';
+import Resume from './Resume';
+
+const App = () => (
+  <div className="wrapper">
+    <Header />
+    <Home />
+    <About />
+    <Blog />
+    <Resume />
+  </div>
+);
+export default App;
