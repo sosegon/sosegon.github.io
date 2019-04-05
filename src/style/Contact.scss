@@ -1,0 +1,46 @@
+.Contact {
+  background: url(../images/bg1.jpg) center no-repeat;
+  background-size: cover;
+
+}
+
+.contact-form {
+  background-color: #fff;
+  padding: 25px;
+}
+
+.contact-title {
+  text-transform: uppercase;
+  color: #95BD5F;
+  font-family: BrandonBlack;
+  font-size: 1.5rem
+}
+
+.contact-form .form-control {
+  text-align: center;
+  padding: 15px;
+  margin-bottom: 25px;
+  border-color: #95BD5F
+}
+
+.contact-form button[type=submit] {
+  background-color: #00A3D6;
+  color: #fff;
+  text-transform: uppercase;
+  font-family: BrandonBold;
+}
+
+.contact-form button[type=submit]:hover {
+  background-color: #0598c6;
+}
+
+input[type=text]:focus,
+input[type=email]:focus,
+textarea:focus,
+.contact-form .form-control:focus {
+  outline: none !important;
+}
+
+.contact-form textarea {
+  min-height: 150px;
+}

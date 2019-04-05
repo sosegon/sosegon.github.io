@@ -1,0 +1,50 @@
+.side-social ul li {
+  display: block;
+  margin-bottom: 35px
+}
+
+.side-social a:hover>img {
+  transform: scale(1.5);
+  transition: 0.7s;
+}
+
+.side-social img {
+  width: 26px;
+}
+
+@media (max-width: 991px) {
+  .side-social {
+    position: absolute;
+    left: 40%;
+    bottom: -40px;
+    width: 55%;
+    margin-bottom: 20px;
+    z-index: 15
+  }
+
+  .side-social ul {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .side-social ul li {
+    margin-bottom: 0;
+  }
+
+  .side-social img {
+    width: 26px
+  }
+}
+
+@media (max-width: 676px) {
+  .side-social {
+    width: auto;
+    right: 20px;
+  }
+}
+
+@media (max-width: 575px) {
+  .side-social {
+    left: 20px;
+  }
+}
