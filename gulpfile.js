@@ -12,7 +12,7 @@ const glob = require('glob');
 const paths = {
   styles: 'src/style/**/*.scss',
   scripts: 'src/js/**/*.jsx',
-  pages: 'src/**/*.html'
+  pages: 'src/*.html'
 };
 
 const browserSync = (done) => {
@@ -62,7 +62,7 @@ const scripts = () => {
 };
 
 const pages = () => {
-  return gulp.src([...paths.pages, './gulpfile.js'])
+  return gulp.src(paths.pages)
   .pipe(validator())
   .pipe(gulp.dest('built/'))
   .pipe(browser_sync.stream());
