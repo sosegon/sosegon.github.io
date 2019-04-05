@@ -8,6 +8,7 @@ const browserify = require('browserify');
 const babelify = require('babelify');
 const source = require('vinyl-source-stream');
 const glob = require('glob');
+const concat = require('gulp-concat');
 
 const paths = {
   styles: 'src/style/**/*.scss',
@@ -31,6 +32,7 @@ const styles = () => {
     .pipe(autoprefixer({
       browsers: ['last 2 versions']
     }))
+    .pipe(concat('main.css'))
     .pipe(gulp.dest('./built/style'))
     .pipe(browser_sync.stream());
 };
@@ -46,7 +48,9 @@ const scriptsLint = () => {
 const scripts = () => {
   const toJs = browserify({
     extensions: [".jsx"],
-    entries: glob.sync(paths.scripts),
+    entries: glob.sync(paths.scripts, {
+      "allowEmpty": true
+    }),
     debug: true
   })
   .transform(babelify, {
