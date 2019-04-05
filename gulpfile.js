@@ -3,9 +3,10 @@ const sass = require('gulp-sass');
 const autoprefixer = require('gulp-autoprefixer');
 const browser_sync = require('browser-sync').create();
 const eslint = require('gulp-eslint');
-const babel = require('gulp-babel');
 const validator = require('gulp-html');
-const concat = require('gulp-concat');
+const browserify = require('browserify');
+const babelify = require('babelify');
+const source = require('vinyl-source-stream');
 
 const paths = {
   styles: 'src/style/**/*.scss',
@@ -33,30 +34,34 @@ const styles = () => {
     .pipe(browser_sync.stream());
 };
 
+const scriptsLint = () => {
+  return gulp
+    .src(paths.scripts)
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError());
+};
+
 const scripts = () => {
-  return (
-    gulp
-      .src([paths.scripts])
-      // eslint() attaches the lint output to the eslint property
-      // of the file object so it can be used by other modules.
-      .pipe(eslint())
-      // eslint.format() outputs the lint results to the console.
-      // Alternatively use eslint.formatEach() (see Docs).
-      .pipe(eslint.format())
-      // To have the process exit with an error code (1) on
-      // lint error, return the stream and pipe to failOnError last.
-      .pipe(eslint.failOnError())
-      .pipe(babel({
-        presets: ["@babel/preset-env", "@babel/preset-react"]
-      }))
-      .pipe(concat('index.js'))
+  const toJs = browserify({
+    extensions: [".jsx"],
+    entries: ['./src/js/App.jsx', './src/js/index.jsx'],
+    debug: true
+  })
+  .transform(babelify, {
+    presets: ["@babel/preset-env", "@babel/preset-react"]
+  })
+  .bundle();
+
+
+  return toJs
+      .pipe(source('index.js'))
       .pipe(gulp.dest('./built/js'))
-      .pipe(browser_sync.stream())
-  );
+      .pipe(browser_sync.stream());
 };
 
 const pages = () => {
-  return gulp.src(paths.pages)
+  return gulp.src([...paths.pages, './gulpfile.js'])
   .pipe(validator())
   .pipe(gulp.dest('built/'))
   .pipe(browser_sync.stream());
@@ -64,12 +69,14 @@ const pages = () => {
 
 const watchFiles = () => {
   gulp.watch(paths.styles, styles);
-  gulp.watch(paths.scripts, scripts);
+  gulp.watch(paths.scripts, gulp.series(scriptsLint, scripts));
   gulp.watch(paths.pages, pages);
 };
 
-const build = gulp.parallel(styles, scripts, pages);
+const js = gulp.series(scriptsLint, scripts);
+const build = gulp.parallel(styles, js, pages);
 const watch = gulp.parallel(watchFiles, browserSync);
 
+exports.js = js;
 exports.build = build;
 exports.watch = watch;
