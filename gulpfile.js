@@ -9,12 +9,15 @@ const babelify = require('babelify');
 const source = require('vinyl-source-stream');
 const glob = require('glob');
 const concat = require('gulp-concat');
+const imagemin = require('gulp-imagemin');
+const pngquant = require('imagemin-pngquant');
 
 const paths = {
   styles: 'src/style/**/*.scss',
   scripts: 'src/js/**/*.jsx',
   pages: 'src/*.html',
-  fonts: 'src/fonts/*'
+  fonts: 'src/fonts/*',
+  images: 'src/images/*'
 };
 
 const browserSync = (done) => {
@@ -59,7 +62,6 @@ const scripts = () => {
   })
   .bundle();
 
-
   return toJs
       .pipe(source('index.js'))
       .pipe(gulp.dest('./built/js'))
@@ -80,15 +82,27 @@ const fonts = () => {
     .pipe(browser_sync.stream());
 };
 
+const images = () => {
+  return gulp
+    .src(paths.images)
+    .pipe(imagemin({
+      progressive: true,
+      use: [pngquant()]
+    }))
+    .pipe(gulp.dest('./built/images'))
+    .pipe(browser_sync.stream());
+};
+
 const watchFiles = () => {
   gulp.watch(paths.styles, styles);
   gulp.watch(paths.scripts, gulp.series(scriptsLint, scripts));
   gulp.watch(paths.pages, pages);
   gulp.watch(paths.fonts, fonts);
+  gulp.watch(paths.images, images);
 };
 
 const js = gulp.series(scriptsLint, scripts);
-const build = gulp.parallel(styles, js, pages, fonts);
+const build = gulp.parallel(styles, js, pages, fonts, images);
 const watch = gulp.parallel(watchFiles, browserSync);
 
 exports.js = js;
