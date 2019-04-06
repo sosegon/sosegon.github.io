@@ -61,11 +61,6 @@ const Blog = () => (
           </div>
         </div>
       </div>
-      <div className="sec-footer ">
-        <div className="col-sm-4 col-md-3">
-          <div className="row"><a href="https://www.linkedin.com/in/sosegon/" className="title"> Contact Me</a></div>
-        </div>
-      </div>
     </div>
     <div className="water-mark text-left">
       <div>Blog</div>
