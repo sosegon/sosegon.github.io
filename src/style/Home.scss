@@ -1,157 +1,176 @@
+@import './variables';
+
 .home {
-  background: url(../images/bg1.jpg) center center no-repeat;
+  background: url('../images/bg1.jpg') center center no-repeat;
   background-size: 100% 130%;
   min-height: 100vh;
   transition: 2s;
+
+  .sec-cont {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 120px;
+  }
 }
 
 .backimage {
   background-position: center bottom !important;
 }
 
-.home .sec-cont {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 120px;
-}
-
 .home-cont {
-  width: 100%;
+  align-items: center;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  width: 100%;
+
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
 }
 
-.home-cont ul {
-  list-style-type: none;
-  padding-left: 0;
-}
+.personal-pranding {
+  .main-title {
+    color: $color-white;
+    font-family: BrandonBlack;
+    font-size: 8rem;
+    letter-spacing: 6px;
+    position: relative;
+    text-transform: uppercase;
+    z-index: 10;
 
-.personal-pranding .main-title {
-  font-family: BrandonBlack;
-  letter-spacing: 6px;
-  font-size: 8rem;
-  color: #fff;
-  text-transform: uppercase;
-  position: relative;
-  z-index: 10;
-}
+    span {
+      color: $primary-color-blue;
+    }
+  }
 
-.personal-pranding .main-title span {
-  color: #00A3D6
-}
+  .sub-title {
+    color: $color-white;
+    font-size: 2.5rem;
+    font-weight: 600;
+    padding-left: 15px;
+    text-transform: uppercase;
+  }
 
-.personal-pranding .sub-title {
-  text-transform: uppercase;
-  font-size: 2.5rem;
-  color: #fff;
-  padding-left: 15px;
-  font-weight: 600;
-}
-
-.personal-pranding .muted-title {
-  font-family: BrandonBlack;
-  letter-spacing: 6px;
-  font-size: 10.5rem;
-  color: #C9C9C9;
-  opacity: 0.08;
-  text-transform: uppercase;
-  position: absolute;
-  top: 160px;
-  z-index: 1;
+  .muted-title {
+    color: $secondary-color-gray;
+    font-family: BrandonBlack;
+    font-size: 10.5rem;
+    letter-spacing: 6px;
+    opacity: .08;
+    position: absolute;
+    text-transform: uppercase;
+    top: 160px;
+    z-index: 1;
+  }
 }
 
 @media only screen and (max-width: 1100px) {
-  .home .water-mark {
-    padding-left: 0 !important;
-  }
-
-  .personal-pranding .main-title {
-    font-size: 7rem;
-  }
-
-  .personal-pranding .sub-title {
-    font-size: 2rem;
-  }
-}
-
-@media (max-width: 991px) {
-  .personal-pranding .main-title {
-    font-size: 6rem;
-  }
-
-  .home .sec-cont {
-    margin-top: 30px;
-  }
-
-  .home .water-mark {
-    bottom: 60px
-  }
-
-  .personal-pranding .sub-title {
-    font-size: 1.5rem;
-  }
-
-  .home .inner-cont {
-    padding: 0 50px;
+  .home {
+    .water-mark {
+      padding-left: 0 !important;
+    }
   }
 
   .personal-pranding {
+    .main-title {
+      font-size: 7rem;
+    }
+
+    .sub-title {
+      font-size: 2rem;
+    }
+  }
+
+}
+
+@media (max-width: 991px) {
+  .personal-pranding {
     margin-top: 80px;
+
+    .main-title {
+      font-size: 6rem;
+    }
+
+    .sub-title {
+      font-size: 1.5rem;
+    }
+  }
+
+  .home {
+    .sec-cont {
+      margin-top: 30px;
+    }
+
+    .water-mark {
+      bottom: 60px;
+    }
+
+    .inner-cont {
+      padding: 0 50px;
+    }
   }
 }
 
 @media (max-width: 676px) {
   .home {
     min-height: 90vh;
-  }
 
-  .home .home-cont {
-    justify-content: center;
-  }
-
-  .personal-pranding .main-title {
-    font-size: 5.5rem;
-    text-align: center;
-  }
-
-  .personal-pranding .muted-title {
-    font-size: 8em
-  }
-}
-
-@media (max-width: 575px) {
-  .home .side-social {
-    bottom: auto;
-    top: 78vh;
+    .home-cont {
+      justify-content: center;
+    }
   }
 
   .personal-pranding {
-    text-align: center;
+    .main-title {
+      font-size: 5.5rem;
+      text-align: center;
+    }
+
+    .muted-title {
+      font-size: 8em;
+    }
+  }
+
+}
+
+@media (max-width: 575px) {
+  .home {
+    .side-social {
+      bottom: auto;
+      top: 78vh;
+    }
   }
 
   .personal-pranding {
     margin-top: 40vh;
+    text-align: center;
     transform: translateY(-50%);
   }
 }
 
 @media (max-width: 550px) {
-  .personal-pranding .main-title {
-    font-size: 4rem;
+  .personal-pranding {
+    .main-title {
+      font-size: 4rem;
+    }
   }
 }
 
 @media (max-width: 450px) {
-  .personal-pranding .main-title {
-    font-size: 3rem;
+  .personal-pranding {
+    .main-title {
+      font-size: 3rem;
+    }
   }
 }
 
 
 @media (max-width: 360px) {
-  .personal-pranding .main-title {
-    font-size: 2.5rem;
+  .personal-pranding {
+    .main-title {
+      font-size: 2.5rem;
+    }
   }
 }

@@ -1,152 +1,160 @@
-.Resume {
-  background-color: #f5f4f9
-}
+@import './variables';
 
 .resume {
+  align-items: center;
+  background-color: $bg-color;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 0 30px;
   margin-bottom: 30px;
+  padding: 0 30px;
 }
 
 .resume-title {
-  color: #00A3D6;
+  color: $primary-color-blue;
   font-family: BrandonBlack;
   font-size: 3.5rem;
   text-transform: uppercase;
 }
 
-.job-info .duration {
-  display: inline-block;
-  color: #00A3D6;
-  border-bottom: 1px solid #00A3D6;
-}
+.job-info {
+  height: 160px;
+  position: absolute;
+  width: 27%;
 
-.job-info .duration.green {
-  color: #95BD5F;
-  border-bottom: 1px solid #95BD5F;
-}
+  .duration {
+    border-bottom: 1px solid $primary-color-blue;
+    color: $primary-color-blue;
+    display: inline-block;
 
-.job-title {
-  text-transform: uppercase;
-  color: #4B5663;
-  font-family: BrandonBold;
-  color: #4B5663;
-  font-size: 1.5rem
-}
+    &.green {
 
-.job-info span {
-  text-transform: uppercase;
-  font-family: BrandonBlack;
-  color: #95BD5F;
-}
+      border-bottom: 1px solid $primary-color-green;
+      color: $primary-color-green;
+    }
+  }
 
-.job-info span.blue {
-  color: #00A3D6
-}
+  span {
+    color: $primary-color-green;
+    font-family: BrandonBlack;
+    text-transform: uppercase;
 
-.job-info p {
-  color: #4B5663;
+    &.blue {
+      color: $primary-color-blue;
+    }
+  }
+
+  p {
+    color: $secondary-color-blue;
+  }
+
+  &:nth-child(1) {
+    right: 29%;
+  }
+
+  &:nth-child(2) {
+    right: 12%;
+    top: 200px;
+  }
+
+  &:nth-child(3) {
+    right: -86px;
+    top: 395px;
+  }
+
+  &:nth-child(4) {
+    top: 205px;
+  }
+
+  &:nth-child(5) {
+    right: 56.3%;
+    top: 400px;
+  }
+
+  &:nth-child(6) {
+    right: 33.5%;
+    top: 560px;
+  }
 }
 
 .jobs {
-  position: relative;
   min-height: 670px;
+  position: relative;
 }
 
-.job-info {
-  position: absolute;
-  height: 160px;
-  width: 27%;
+.job-title {
+  color: $secondary-color-blue;
+  font-family: BrandonBold;
+  font-size: 1.5rem;
+  text-transform: uppercase;
 }
 
-.job-info:nth-child(1) {
-  right: 29%;
-}
+.side-blobks {
+  &.green {
+    left: 49%;
+    position: absolute;
+    top: -20%;
+    transform: rotatez(-50deg);
+  }
 
-.job-info:nth-child(2) {
-  top: 200px;
-  right: 12%
-}
+  &.blue {
+    left: 45%;
+    position: absolute;
+    top: -10%;
+    transform: rotatez(-50deg);
+  }
 
-.job-info:nth-child(3) {
-  right: -86px;
-  top: 395px;
-}
-
-.job-info:nth-child(4) {
-  top: 205px;
-}
-
-.job-info:nth-child(5) {
-  top: 400px;
-  right: 56.3%;
-}
-
-.job-info:nth-child(6) {
-  top: 560px;
-  right: 33.5%;
-}
-
-.side-blobks.green {
-  position: absolute;
-  left: 49%;
-  transform: rotatez(-50deg);
-  top: -20%;
-}
-
-.side-blobks.blue {
-  position: absolute;
-  left: 45%;
-  transform: rotatez(-50deg);
-  top: -10%;
-}
-
-.side-blobks img {
-  width: 46px;
-  margin-left: -23px;
-  margin-bottom: 5px;
-  transform: rotatez(50deg);
+  img {
+    margin-bottom: 5px;
+    margin-left: -23px;
+    transform: rotatez(50deg);
+    width: 46px;
+  }
 }
 
 .sm-line {
+  border-left: 2px dashed $primary-color-green;
   height: 70px;
-  border-left: 2px dashed #95BD5F;
 }
 
 .lg-line {
+  border-left: 2px dashed $primary-color-green;
   height: 229px;
-  border-left: 2px dashed #95BD5F;
 }
 
 .block {
+  background-color: $primary-color-green;
+  height: 40px;
   margin-left: -20px;
   width: 40px;
-  height: 40px;
-  background-color: #95BD5F;
 }
 
-.blue .sm-line,
-.blue .lg-line {
-  border-left-color: #00A3D6;
-}
 
-.blue .block {
-  background-color: #00A3D6;
-}
+.blue {
 
-@media only screen and (max-width: 1100px) {
-  .side-blobks.green {
-    left: 50%;
-    transform: rotatez(-41deg);
-    top: -15%;
+  .lg-line,
+  .sm-line {
+    border-left-color: $primary-color-blue;
   }
 
-  .side-blobks.blue {
-    left: 46%;
-    transform: rotatez(-41deg);
-    top: -7%;
+  .block {
+    background-color: $primary-color-blue;
+  }
+}
+
+
+@media only screen and (max-width: 1100px) {
+  .side-blobks {
+    &.green {
+      left: 50%;
+      top: -15%;
+      transform: rotatez(-41deg);
+    }
+
+    &.blue {
+      left: 46%;
+      top: -7%;
+      transform: rotatez(-41deg);
+    }
   }
 
   .lg-line {
@@ -155,17 +163,36 @@
 }
 
 @media (max-width: 991px) {
-  .Resume .sec-cont {
-    margin-top: 0 !important
+  .resume {
+    .sec-cont {
+      margin-top: 0 !important;
+    }
   }
 }
 
 @media (max-width: 767px) {
-  .side-blobks.green {
-    transform: rotateZ(0);
-    left: 20px;
-    top: -74px;
-    right: auto;
+  .side-blobks {
+    &.green {
+      left: 20px;
+      right: auto;
+      top: -74px;
+      transform: rotateZ(0);
+    }
+
+    &.blue {
+      left: auto;
+      right: 20px;
+      top: 425px;
+      transform: rotateZ(0);
+    }
+
+    img {
+      transform: rotateZ(0);
+    }
+
+    .d-s-none {
+      display: none;
+    }
   }
 
   .sm-line {
@@ -176,46 +203,31 @@
     height: 120px !important;
   }
 
-  .side-blobks img {
-    transform: rotateZ(0);
-  }
-
-  .side-blobks.blue {
-    transform: rotateZ(0);
-    left: auto;
-    top: 425px;
-    right: 20px;
-  }
-
   .job-info {
     position: relative;
-  }
 
-  .job-info:nth-child(1),
-  .job-info:nth-child(2),
-  .job-info:nth-child(3) {
-    right: auto;
-    left: 60px;
-    top: auto;
-    width: 84%;
-  }
+    &:nth-child(1),
+    &:nth-child(2),
+    &:nth-child(3) {
+      left: 60px;
+      right: auto;
+      top: auto;
+      width: 84%;
+    }
 
-  .job-info:nth-child(4),
-  .job-info:nth-child(5),
-  .job-info:nth-child(6) {
-    right: 0px;
-    top: auto;
-    width: 84%;
-    left: auto;
-  }
-
-  .side-blobks .d-s-none {
-    display: none;
+    &:nth-child(4),
+    &:nth-child(5),
+    &:nth-child(6) {
+      left: auto;
+      right: 0;
+      top: auto;
+      width: 84%;
+    }
   }
 
   .resume {
-    padding: 0;
     margin-bottom: 80px;
+    padding: 0;
   }
 }
 
@@ -227,7 +239,9 @@
 }
 
 @media (max-width: 450px) {
-  .side-blobks.blue {
-    right: 0
+  .side-blobks {
+    &.blue {
+      right: 0;
+    }
   }
 }

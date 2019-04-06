@@ -1,68 +1,74 @@
-.About {
-  background: #f5f4f9
+@import './variables';
+
+.about {
+  background: $bg-color;
 }
 
 .shadow {
-  box-shadow: 13px 8px 30px #d4d3d3;
+  box-shadow: 13px 8px 30px $shadow-color;
 }
 
-.about-title h1 {
-  font-family: BrandonBlack;
-  text-transform: uppercase;
-  font-size: 3.25rem;
-  letter-spacing: 3px;
-  color: #C9C9C9;
+.about-title {
+  h1 {
+    color: $secondary-color-gray;
+    font-family: BrandonBlack;
+    font-size: 3.25rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+
+  span {
+    color: $primary-color-blue;
+  }
 }
 
-.about-title span {
-  color: #00A3D6
-}
-
-.about-content p {
-  text-align: justify;
-  color: #4B5663
+.about-content {
+  p {
+    color: $secondary-color-blue;
+    text-align: justify;
+  }
 }
 
 .about-img {
   opacity: 0;
-  transition: 0.5s;
   transform: scale(.75);
+  transition: .5s;
+
+  &>div {
+    background: url('../images/about.jpg') center no-repeat;
+    background-size: cover;
+    height: auto;
+    min-height: 90%;
+  }
 }
 
-.about-img>div {
-  background: url('../images/about.jpg') center no-repeat;
-  background-size: cover;
-  min-height: 90%;
-  height: auto;
-}
 
 .aboutme-img {
-  overflow: hidden;
-  min-height: 90%;
   height: auto;
+  min-height: 90%;
+  overflow: hidden;
   transform: scale(.75);
 }
 
 .ripple-effect {
-  position: relative;
   height: 100%;
+  position: relative;
+
+  &:hover>.wave {
+    animation: ripple-in 2s;
+  }
 }
 
 .wave {
-  position: absolute;
-  width: 0;
-  height: 0;
-  background-color: #000;
+  background-color: $color-black;
   bottom: 0;
+  height: 0;
   left: 0;
+  opacity: .5;
+  position: absolute;
   transform: scale(0);
-  opacity: 0.5;
+  width: 0;
 }
-
-.ripple-effect:hover>.wave {
-  animation: ripple-in 2s;
-}
-
 
 @keyframes ripple-in {
   0% {
@@ -70,16 +76,16 @@
   }
 
   90% {
-    transform: scaleX(1);
-    opacity: 0.3;
-    width: 100%;
+    background-color: $color-white;
     height: 100%;
-    background-color: #fff;
+    opacity: .3;
+    transform: scaleX(1);
+    width: 100%;
   }
 
   100% {
-    transform: scaleX(0);
     opacity: 0;
+    transform: scaleX(0);
   }
 }
 
@@ -97,22 +103,24 @@
 
 @media (max-width: 991px) {
   .about-img>div {
-    margin-bottom: 20px;
+    background-position: 0 0;
     background-size: 100%;
     height: 360px;
-    background-position: 0px 0px;
+    margin-bottom: 20px;
   }
 }
 
 @media (max-width: 767px) {
   .about-img>div {
-    background-size: 110%
+    background-size: 110%;
   }
 }
 
 @media (max-width: 676px) {
-  .About .inner-cont {
-    padding: 0;
+  .about {
+    inner-cont {
+      padding: 0;
+    }
   }
 }
 
@@ -124,7 +132,7 @@
 
 @media (max-width: 550px) {
   .about-img>div {
-    background-size: 130%
+    background-size: 130%;
   }
 }
 
@@ -135,10 +143,10 @@
 
   .about-title {
     font-size: 2.5px;
-  }
 
-  .about-title h1 {
-    font-size: 2.25rem
+    h1 {
+      font-size: 2.25rem;
+    }
   }
 }
 

@@ -1,35 +1,41 @@
+@import './variables';
+
 .sec-footer {
   margin-top: 50px;
-}
 
-.sec-footer .title {
-  display: block;
-  width: 100%;
-  font-size: 16px;
-  padding-bottom: 5px;
-  letter-spacing: 2px;
-  color: #fff;
-  text-transform: uppercase;
-  font-family: BrandonBold;
-  border-bottom: 1px solid #fff
-}
+  .title {
+    border-bottom: 1px solid $color-white;
+    color: $color-white;
+    display: block;
+    font-family: BrandonBold;
+    font-size: 16px;
+    letter-spacing: 2px;
+    padding-bottom: 5px;
+    text-transform: uppercase;
+    width: 100%;
+  }
 
-.sec-footer.inverse .title {
-  color: #4B5663;
-  border-bottom-color: #4B5663;
+  &.inverse {
+    .title {
+      border-bottom-color: $secondary-color-blue;
+      color: $secondary-color-blue;
+    }
+  }
 }
 
 @media (max-width: 575px) {
   .sec-footer {
+    display: none;
     position: absolute;
+    right: 20px;
     top: 67vh;
     z-index: 200;
-    right: 20px;
-    display: none;
-  }
 
-  .sec-footer.inverse .title {
-    color: #fff;
-    border-bottom-color: #fff;
+    &.inverse {
+      .title {
+        border-bottom-color: $color-white;
+        color: $color-white;
+      }
+    }
   }
 }

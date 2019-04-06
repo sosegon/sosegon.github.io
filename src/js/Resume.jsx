@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Resume = () => (
-  <section className="Resume" id="Resume">
+  <section className="resume" id="Resume">
     <div className="container">
       <div className="row resume mt-3">
         <div className="resume-title animated fadeIn wow">
