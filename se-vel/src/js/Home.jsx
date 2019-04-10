@@ -23,9 +23,9 @@ const Home = () => (
           </div>
         </div>
       </div>
-      <div className="water-mark text-left  animated slideInUp ">
-        <div className="container">Sebastian<br />Velasquez</div>
-      </div>
+    </div>
+    <div className="water-mark text-left  animated slideInUp ">
+      <div className="container">Sebastian<br />Velasquez</div>
     </div>
   </section>
 );

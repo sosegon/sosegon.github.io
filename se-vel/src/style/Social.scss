@@ -1,4 +1,6 @@
 .side-social {
+  position: fixed;
+
   ul {
     li {
       display: block;
@@ -23,7 +25,7 @@
     bottom: -40px;
     left: 40%;
     margin-bottom: 20px;
-    position: absolute;
+    position: fixed;
     width: 55%;
     z-index: 15;
 

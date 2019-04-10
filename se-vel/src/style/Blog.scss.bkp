@@ -1,0 +1,202 @@
+.Blog {
+  background: #000;
+}
+
+.blog-block {
+  height: 480px;
+  position: relative;
+}
+
+.blog-img {
+  height: 100%;
+  max-width: 100%;
+  background-size: 100% 100%;
+}
+
+.blog-des {
+  position: absolute;
+  bottom: 30px;
+  text-transform: uppercase;
+  color: #fff;
+  padding: 10px;
+  max-width: calc(100% - 30px);
+  font-family: BrandonBold;
+  word-wrap: break-word;
+}
+
+.b-title {
+  color: #00A3D6;
+  display: inline-block;
+  font-size: 16px;
+  margin-bottom: 5px;
+  position: relative;
+}
+
+.b-title:after {
+  position: absolute;
+  content: '';
+  left: 0;
+  right: -40px;
+  background-color: #00A3D6;
+  height: 1px;
+  bottom: 0;
+}
+
+.blog-des h3 {
+  word-wrap: break-word;
+}
+
+/* singleBlog Section */
+.singleBlog {
+  background: url(../images/bg1.jpg) center no-repeat;
+  background-size: cover;
+  color: #4B5663;
+}
+
+.singleBlog-img {
+  height: 250px;
+  background-size: 100% !important;
+  /*margin: 0 -15px*/
+}
+
+.left-side {
+  background-color: #00A3D6;
+}
+
+.singleBlog-title {
+  text-transform: uppercase;
+  font-family: BrandonBold;
+}
+
+.right-side {
+  background-color: #fff;
+}
+
+.sblog-title {
+  text-transform: uppercase;
+  font-family: BrandonBold;
+  color: #fff;
+  text-transform: uppercase;
+  position: absolute;
+  bottom: 35px;
+  padding: 0 35px;
+}
+
+.sblog-title .b-title {
+  color: #C9C9C9;
+}
+
+.sblog-title .b-title:after {
+  background-color: #C9C9C9;
+}
+
+.sblog-title h3 {
+  font-size: 1.5rem
+}
+
+@media (max-width: 991px) {
+
+  .blog-block {
+    margin-bottom: 15px;
+  }
+
+  .blog-block:last-child {
+    height: 230px;
+
+  }
+
+  .blog-img {
+    background-size: 100% !important;
+  }
+
+  .blog-block:last-child .blog-des {
+    width: 50%;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .left-side {
+    display: none !important;
+  }
+
+  .sblog-title>div {
+    text-align: center;
+  }
+
+  .sblog-title .b-title {
+    color: #00A3D6
+  }
+
+  .sblog-title .b-title:after {
+    right: -40px;
+    left: -40px;
+    bottom: -3px;
+    background-color: #00A3D6;
+  }
+
+  .sblog-title {
+    bottom: auto;
+    top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+  }
+
+  .singleBlog-img {
+    background-size: 100% 100% !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .sblog-title {
+    bottom: auto;
+    top: 0;
+    height: 250px;
+  }
+
+  .singleBlog-img {
+    background-size: 100% !important;
+  }
+
+  .blog-block,
+  .blog-block:last-child {
+    height: 300px;
+  }
+
+  .handel-sm {
+    width: 250px;
+    margin: auto;
+  }
+}
+
+@media (max-width: 676px) {
+  .blog-content {
+    margin: 0 -45px;
+
+  }
+
+  .blog-block {
+    margin-bottom: 0;
+  }
+
+  .blog-des,
+  .blog-block:last-child .blog-des {
+    width: 60%;
+    bottom: 50%;
+    left: 50%;
+    top: auto;
+    transform: translate(-50%, 50%);
+    text-align: center;
+  }
+
+  .b-title {
+    margin-bottom: 15px;
+  }
+
+  .b-title:after {
+    left: -20px;
+    right: -20px;
+  }
+}

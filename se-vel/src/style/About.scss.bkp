@@ -1,0 +1,151 @@
+.About {
+  background: #f5f4f9
+}
+
+.shadow {
+  box-shadow: 13px 8px 30px #d4d3d3;
+}
+
+.about-title h1 {
+  font-family: BrandonBlack;
+  text-transform: uppercase;
+  font-size: 3.25rem;
+  letter-spacing: 3px;
+  color: #C9C9C9;
+}
+
+.about-title span {
+  color: #00A3D6
+}
+
+.about-content p {
+  text-align: justify;
+  color: #4B5663
+}
+
+.about-img {
+  opacity: 0;
+  transition: 0.5s;
+  transform: scale(.75);
+}
+
+.about-img {
+  &>div {
+    background: url('../images/about.jpg') center no-repeat;
+    background-size: cover;
+    min-height: 90%;
+    height: auto;
+  }
+}
+
+.aboutme-img {
+  overflow: hidden;
+  min-height: 90%;
+  height: auto;
+  transform: scale(.75);
+}
+
+.ripple-effect {
+  position: relative;
+  height: 100%;
+}
+
+.wave {
+  position: absolute;
+  width: 0;
+  height: 0;
+  background-color: #000;
+  bottom: 0;
+  left: 0;
+  transform: scale(0);
+  opacity: 0.5;
+}
+
+.ripple-effect:hover>.wave {
+  animation: ripple-in 2s;
+}
+
+
+@keyframes ripple-in {
+  0% {
+    transform: scaleX(0);
+  }
+
+  90% {
+    transform: scaleX(1);
+    opacity: 0.3;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+  }
+
+  100% {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+}
+
+@media (min-width: 1200px) {
+  .about-img>div {
+    background-position: -40px;
+  }
+}
+
+@media only screen and (max-width: 1100px) {
+  .about-img>div {
+    background-position: -70px;
+  }
+}
+
+@media (max-width: 991px) {
+  .about-img>div {
+    margin-bottom: 20px;
+    background-size: 100%;
+    height: 360px;
+    background-position: 0px 0px;
+  }
+}
+
+@media (max-width: 767px) {
+  .about-img>div {
+    background-size: 110%
+  }
+}
+
+@media (max-width: 676px) {
+  .About .inner-cont {
+    padding: 0;
+  }
+}
+
+@media (max-width: 575px) {
+  .about-img>div {
+    background-size: 120%;
+  }
+}
+
+@media (max-width: 550px) {
+  .about-img>div {
+    background-size: 130%
+  }
+}
+
+@media (max-width: 450px) {
+  .about-img>div {
+    background-size: 160%;
+  }
+
+  .about-title {
+    font-size: 2.5px;
+  }
+
+  .about-title h1 {
+    font-size: 2.25rem
+  }
+}
+
+@media (max-width: 360px) {
+  .about-img>div {
+    background-size: 172%;
+  }
+}
