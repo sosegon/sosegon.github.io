@@ -2,6 +2,11 @@
   "name": "se-vel",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "build": "gulp build",
+    "dev": "gulp watch"
+  },
+  "browsersList": ["last 2 versions"],
   "dependencies": {
     "animate.css": "^3.7.0",
     "bootstrap": "^4.3.1",
@@ -24,6 +29,7 @@
     "@babel/core": "^7.4.3",
     "@babel/preset-env": "^7.4.3",
     "@babel/preset-react": "^7.0.0",
+    "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.5",
     "babelify": "^10.0.0",
     "browser-sync": "^2.26.3",

@@ -33,9 +33,7 @@ const browserSync = (done) => {
 const styles = () => {
   return gulp.src(paths.styles)
     .pipe(sass())
-    .pipe(autoprefixer({
-      browsers: ['last 2 versions']
-    }))
+    .pipe(autoprefixer())
     .pipe(concat('main.css'))
     .pipe(gulp.dest('./built/style'))
     .pipe(browser_sync.stream());
