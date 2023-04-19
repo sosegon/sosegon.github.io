@@ -48,17 +48,17 @@ $(document).ready(function() {
 
     let social_white =
     '<ul>' +
-        '<li><a href="https://api.whatsapp.com/send?phone=593987021212" target="_blank"><img src="assets/images/iconos-14.png" title="WhatsApp"></a></li>' +
+        '<li><a href="https://t.me/sosegon" target="_blank"><img src="assets/images/iconos-12.png" title="Telegram"></a></li>' +
         '<li><a href="https://github.com/sosegon/" target="_blank"><img src="assets/images/iconos-15.png" title="Github"></a></li>' +
-        '<li><a href="https://www.upwork.com/fl/sebastianvelasquez" target="_blank"><img src="assets/images/iconos-18.png" title="Upwork"></a></li>' +
+        '<li><a href="https://upwork.com/freelancers/~01f117f95f6a44ef06" target="_blank"><img src="assets/images/iconos-18.png" title="Upwork"></a></li>' +
         '<li><a href="https://www.linkedin.com/in/sosegon/" target="_blank"><img src="assets/images/iconos-20.png" title="Linkedin"></a></li>' +
         '<li><a href="https://medium.com/@sosegon" target="_blank"><img src="assets/images/iconos-21.png" title="Medium"></a></li>' +
     '</ul>';
     let social_gray =
     '<ul>' +
-        '<li><a href="https://api.whatsapp.com/send?phone=593987021212" target="_blank"><img src="assets/images/iconos-13.png" title="WhatsApp"></a></li>' +
+        '<li><a href="https://t.me/sosegon" target="_blank"><img src="assets/images/iconos-11.png" title="Telegram"></a></li>' +
         '<li><a href="https://github.com/sosegon/" target="_blank"><img src="assets/images/iconos-16.png" title="Github"></a></li>' +
-        '<li><a href="https://www.upwork.com/fl/sebastianvelasquez" target="_blank"><img src="assets/images/iconos-17.png" title="Upwork"></a></li>' +
+        '<li><a href="https://upwork.com/freelancers/~01f117f95f6a44ef06" target="_blank"><img src="assets/images/iconos-17.png" title="Upwork"></a></li>' +
         '<li><a href="https://www.linkedin.com/in/sosegon/" target="_blank"><img src="assets/images/iconos-19.png" title="Linkedin"></a></li>' +
         '<li><a href="https://medium.com/@sosegon" target="_blank"><img src="assets/images/iconos-22.png" title="Medium"></a></li>' +
     '</ul>';
