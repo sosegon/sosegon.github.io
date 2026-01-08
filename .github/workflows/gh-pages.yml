@@ -1,0 +1,42 @@
+name: Build and Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: se-vel-v2
+
+      - name: Build project
+        run: npm run build
+        working-directory: se-vel-v2
+
+      - name: Build storybook
+        run: npm build-storybook
+        working-directory: se-vel-v2
+
+      - name: Copy Storybook to build folder
+        run: cp -r se-vel-v2/storybook-static ./se-vel-v2/build/storybook
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./se-vel-v2/build
+          publish_branch: gh-pages
+          force_orphan: true
