@@ -1,1 +1,0 @@
-import{t,e as o}from"./props-CjsCpZOG.js";var a=t('<div class="svelte-vhhwha"></div>');function d(e){var s=a();o(e,s)}d.__docgen={version:3,name:"Divider.svelte",data:[],computed:[],methods:[],components:[],description:null,keywords:[],events:[],slots:[],refs:[]};export{d as D};

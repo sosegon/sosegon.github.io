@@ -36,6 +36,18 @@ jobs:
       - name: Copy conf files
         run: cp CNAME ./se-vel-v2/build/CNAME && cp 54071fdb.html ./se-vel-v2/build/54071fdb.html
 
+      - name: Copy v1
+        run: cp -r se-vel-v1 ./se-vel-v2/build/v1
+
+      - name: Copy landing3d
+        run: cp -r landing3d ./se-vel-v2/build/landing3d
+
+      - name: Copy rendering
+        run: cp -r rendering ./se-vel-v2/build/rendering
+
+      - name: Copy watch-finder
+        run: cp -r watch-finder ./se-vel-v2/build/watch-finder
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
