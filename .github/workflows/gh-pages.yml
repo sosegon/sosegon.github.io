@@ -33,6 +33,9 @@ jobs:
       - name: Copy Storybook to build folder
         run: cp -r se-vel-v2/storybook-static ./se-vel-v2/build/storybook
 
+      - name: Copy conf files
+        run: cp CNAME ./se-vel-v2/build/CNAME && cp 54071fdb.html ./se-vel-v2/build/54071fdb.html
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
