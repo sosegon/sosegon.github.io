@@ -27,7 +27,7 @@ jobs:
         working-directory: se-vel-v2
 
       - name: Build storybook
-        run: npm build-storybook
+        run: npm run build-storybook
         working-directory: se-vel-v2
 
       - name: Copy Storybook to build folder
