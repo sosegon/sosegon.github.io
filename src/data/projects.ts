@@ -1,5 +1,18 @@
 export default [
   {
+    name: 'Elegant Landing Page',
+    type: 'Web',
+    imgUrl: '/images/projects/mujer-con-criterio.jpg',
+    technologies: ['Vue.js', 'Figma'],
+    links: {
+      github: 'https://github.com/sosegon/luxury-personal-shopper',
+      web: 'https://mujerconcriterio.com',
+      figma: 'https://www.figma.com/design/QIUbtUw2vUfkHYe45tpsS6/Luxury-Personal-Shopper?node-id=0-1&t=H7twt6FRTIlcNhuY-1'
+    },
+    description:
+    'Designed and developed the landing page for a luxury personal shopping service, crafting a minimal aesthetic with deliberate colors, typography and layout to reflect the brand\'s exclusivity and drive consultation inquiries.'
+  },
+  {
     name: 'Numbers',
     type: 'Web',
     imgUrl: '/images/projects/numbers.png',
