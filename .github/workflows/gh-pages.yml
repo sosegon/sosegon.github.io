@@ -34,7 +34,7 @@ jobs:
         run: cp -r se-vel-v2/storybook-static ./se-vel-v2/build/storybook
 
       - name: Copy conf files
-        run: cp CNAME ./se-vel-v2/build/CNAME && cp 54071fdb.html ./se-vel-v2/build/54071fdb.html && cp PrivacyPolicy.md ./se-vel-v2/build/PrivacyPolicy.md
+        run: cp CNAME ./se-vel-v2/build/CNAME && cp 54071fdb.html ./se-vel-v2/build/54071fdb.html
 
       - name: Copy v1
         run: cp -r se-vel-v1 ./se-vel-v2/build/v1
